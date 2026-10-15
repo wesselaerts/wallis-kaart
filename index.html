@@ -138,6 +138,7 @@ h1 .kruis { position: relative; }
 .ert { border-collapse: collapse; font-variant-numeric: tabular-nums; margin-top: 4px; }
 .ert td { padding: 2px 10px 2px 0; border-bottom: 1px solid #e3e8ec; white-space: nowrap; }
 .ert td.y { font-family: var(--f-mono); font-size: 11.5px; }
+@media (max-width: 520px) { .ert td:nth-child(4) { display: none; } .ert td { padding-right: 6px; } }
 </style>
 
 </head>
@@ -369,7 +370,7 @@ const DATA = {"wallis": [[4608, 23040], [4608, 13312], [10752, 13312], [10752, 2
       const top = b === null ? p.yt : Math.min(p.yo + b, p.yt);
       return `<tr><td>${n}</td><td class="y">meest y ${p.yo + m}</td><td class="y">(${p.yt - (p.yo + m)} m diep)</td><td class="y">y ${p.yo + a} t/m ${top}</td></tr>`;
     }).join("");
-    L_.popup({ maxWidth: 420 }).setLatLng(e.latlng).setContent(
+    L_.popup({ maxWidth: Math.min(420, window.innerWidth - 40) }).setLatLng(e.latlng).setContent(
       `<b>Hier onder de grond</b><table class="ert">${rij}</table>` +
       `<div class="m">maaiveld y ${p.yt} (${fmt(p.h)} m) · onderkant y ${p.yo} · bedrock y ${p.yo - 128}</div>`).openOn(map);
   });
