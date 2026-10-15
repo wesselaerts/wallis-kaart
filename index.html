@@ -121,6 +121,23 @@ h1 .kruis { position: relative; }
   .meet { font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) { .leaflet-zoom-anim .leaflet-zoom-animated { transition: none !important; } }
+
+.gids { border: 1px solid var(--lijn); border-radius: 8px; }
+.gids > summary { cursor: pointer; padding: 8px 10px; font-family: var(--f-titel); font-weight: 600; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+.gids > summary::-webkit-details-marker { display: none; }
+.gids > summary::after { content: "+"; font-family: var(--f-mono); color: var(--zacht); }
+.gids[open] > summary::after { content: "−"; }
+.gids .gids-inhoud { padding: 0 10px 10px; display: grid; gap: 10px; max-height: 48vh; overflow-y: auto; font-size: 12.5px; line-height: 1.45; }
+.gids h2 { margin: 4px 0 0; font-family: var(--f-titel); font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--zacht); }
+.gids table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.gids th, .gids td { text-align: left; padding: 4px 6px 4px 0; border-bottom: 1px solid var(--lijn); vertical-align: top; }
+.gids th { font-weight: 600; font-size: 11px; color: var(--zacht); }
+.gids td.y { font-family: var(--f-mono); font-size: 11.5px; white-space: nowrap; }
+.gids ul { margin: 0; padding-left: 16px; display: grid; gap: 3px; }
+
+.ert { border-collapse: collapse; font-variant-numeric: tabular-nums; margin-top: 4px; }
+.ert td { padding: 2px 10px 2px 0; border-bottom: 1px solid #e3e8ec; white-space: nowrap; }
+.ert td.y { font-family: var(--f-mono); font-size: 11.5px; }
 </style>
 
 </head>
@@ -143,6 +160,53 @@ h1 .kruis { position: relative; }
       <li><label><span style="width:12px;height:12px;border-radius:50%;background:var(--rood);border:2px solid #fff;justify-self:center"></span><span>Plekken met naam</span><input type="checkbox" id="t-plekken" checked></label></li>
     </ul>
     <div class="feiten" id="feiten"></div>
+    <details class="gids">
+      <summary>Waar vind je wat?</summary>
+      <div class="gids-inhoud">
+        <p>Onder het landschap ligt de echte Minecraft-ondergrond. Die begint niet overal even diep: in een dal ± 10&ndash;60 m onder het gras, onder een berg soms 300 m. Dat beginpunt heet hier de <b>onderkant</b>; vanaf daar is het gewoon Minecraft (1 blok = 1 m).</p>
+        <p><b>Klik of tik ergens op de kaart</b>: je ziet dan voor precies die plek op welke y (F3) je elk erts vindt, en hoeveel meter onder het maaiveld dat is.</p>
+        <h2>Ertsen: hoe diep onder de onderkant</h2>
+        <table>
+          <tr><th>Wat</th><th>Waar het meest</th></tr>
+          <tr><td>Kolen</td><td>in de bovenste lagen: van ± 30 m <i>boven</i> tot 60 m onder de onderkant, en in de bergen tot de top</td></tr>
+          <tr><td>IJzer</td><td>± 50 m onder de onderkant, en hoog in de bergen. Grote ijzeraders 70&ndash;125 m onder</td></tr>
+          <tr><td>Koper</td><td>± 15 m onder de onderkant (tot 80 m eronder); veel in druipsteengrotten</td></tr>
+          <tr><td>Lapis</td><td>± 65 m onder de onderkant</td></tr>
+          <tr><td>Goud</td><td>± 80 m onder de onderkant</td></tr>
+          <tr><td>Redstone</td><td>100&ndash;128 m onder de onderkant</td></tr>
+          <tr><td>Diamant</td><td><b>± 120 m onder de onderkant</b>, net boven de bedrock</td></tr>
+          <tr><td>Smaragd</td><td>alleen hoog in de bergen (boven ± 2700 m), los in de rots</td></tr>
+        </table>
+        <p>Vanaf 64 m onder de onderkant wordt het diepe leisteen (deepslate); op 128 m eronder ligt de bedrock: dieper kan niet.</p>
+        <h2>Voorbeelden (y in het spel, F3)</h2>
+        <table>
+          <tr><th>Plek</th><th>Maaiveld</th><th>Onderkant</th><th>Diamant</th></tr>
+          <tr><td>Spawn (dorpje)</td><td class="y">y &minus;202</td><td class="y">&minus;215</td><td class="y">± &minus;335</td></tr>
+          <tr><td>Zermatt</td><td class="y">y &minus;994</td><td class="y">&minus;1006</td><td class="y">± &minus;1125</td></tr>
+          <tr><td>Zmutt</td><td class="y">y &minus;676</td><td class="y">&minus;738</td><td class="y">± &minus;855</td></tr>
+          <tr><td>Riffelalp</td><td class="y">y &minus;388</td><td class="y">&minus;401</td><td class="y">± &minus;520</td></tr>
+          <tr><td>Schwarzsee</td><td class="y">y &minus;28</td><td class="y">&minus;76</td><td class="y">± &minus;195</td></tr>
+          <tr><td>Gornergrat</td><td class="y">y 499</td><td class="y">321</td><td class="y">± 205</td></tr>
+        </table>
+        <h2>Grotten en wat erin zit</h2>
+        <ul>
+          <li><b>Grotten</b> overal, tot in de toppen van de bergen. Ingangen op hellingen in gras, rots en puin (± 3 per km²).</li>
+          <li><b>Grondwater</b> onder de onderkant; <b>lava</b> pas vanaf ± 105 onder.</li>
+          <li><b>Mijnschachten</b> 24&ndash;72 onder, met mijnkarren met een kist.</li>
+          <li><b>Strongholds</b> ± 30&ndash;70 onder (vier onder de Matterhorn-kant: zoek ze zelf).</li>
+          <li><b>Trial chambers</b> 84&ndash;104 onder, met vaults en trial spawners.</li>
+          <li><b>Ancient cities</b> en deep dark ± 115 onder: sluip, anders komt de warden.</li>
+          <li>Ook geodes (amethist), lush caves en druipsteengrotten, zoals in gewoon Minecraft.</li>
+        </ul>
+        <h2>Spelregels</h2>
+        <ul>
+          <li>Boom omhakken: de hele boom valt en er komt een jong boompje terug. Sluipend hakken = gewoon, zonder herplanten.</li>
+          <li>Dag 30 minuten, avond en nacht 30 minuten; één van jullie in bed is genoeg.</li>
+          <li>Doodgaan: je spullen liggen in een graf, met een kompas ernaartoe (<code>/graves</code>).</li>
+          <li>De Gornergratbahn: pak een karretje uit de kist bij het station en rij mee.</li>
+        </ul>
+      </div>
+    </details>
     <p class="bron">Zoom ver uit voor de Landeskarte met de ideeën voor de volgende stukken. Luchtfoto, kaart en hoogtemodel: © swisstopo. Minecraft-wereld: gebouwd voor Kap uit swissALTI3D, swissSURFACE3D, SWISSIMAGE en swissTLM3D, met grotten en ertsen van Minecraft 26.3.</p>
   </div>
 </details>
@@ -187,7 +251,7 @@ const DATA = {"wallis": [[4608, 13312], [10752, 23040]], "alpen": [[[6000, 14000
   const fmt = n => n.toLocaleString("de-CH").replace(/[’,]/g, "'");
   const plekken = L_.layerGroup(DATA.plekken.map(p => {
     const y = p.h != null ? p.h - DATA.ynul : null;
-    const m = L_.circleMarker([p.z, p.x], { radius: p.s === "spawn" ? 8 : 5, color: "#0e151b", weight: 1.5, fillColor: kleur[p.s] || "#fff", fillOpacity: 1 });
+    const m = L_.circleMarker([p.z, p.x], { bubblingMouseEvents: false, radius: p.s === "spawn" ? 8 : 5, color: "#0e151b", weight: 1.5, fillColor: kleur[p.s] || "#fff", fillOpacity: 1 });
     m.bindTooltip(p.n, { permanent: belangrijk.has(p.s), direction: "right", offset: [6, 0], className: "naam" });
     m.bindPopup(`<b>${p.n}</b><br>${p.t || ""}<div class="m">x ${p.x} · z ${p.z}${y != null ? " · y " + y : ""}${p.h != null ? " · " + fmt(p.h) + " m ü. M." : ""}</div>`);
     return m;
@@ -272,6 +336,40 @@ const DATA = {"wallis": [[4608, 13312], [10752, 23040]], "alpen": [[[6000, 14000
     for (let i = 0; i < hoogte.length; i++) hoogte[i] = px[i * 4] * 256 + px[i * 4 + 1];
   };
   himg.src = "hoogte.png";
+  // onderkant van de grotlaag (meter), zelfde raster als de hoogte: daaruit volgt de ertsdiepte per plek
+  let onderk = null;
+  const oimg = new Image();
+  oimg.onload = () => {
+    const cv = document.createElement("canvas"); cv.width = oimg.width; cv.height = oimg.height;
+    const cx = cv.getContext("2d"); cx.drawImage(oimg, 0, 0);
+    const px = cx.getImageData(0, 0, cv.width, cv.height).data;
+    onderk = new Int16Array(cv.width * cv.height);
+    for (let i = 0; i < onderk.length; i++) onderk[i] = px[i * 4] * 256 + px[i * 4 + 1];
+  };
+  oimg.src = "onder.png";
+  // erts: [naam, meeste (t.o.v. onderkant), van, tot]; tot null = tot het maaiveld
+  const ERTS = [["Diamant", -123, -128, -48], ["Redstone", -115, -128, -49], ["Goud", -80, -128, -32],
+    ["Lapis", -64, -128, 0], ["IJzer", -48, -124, null], ["Koper", -16, -80, 48], ["Kolen", 32, -64, null]];
+  function plek(x, z) {
+    const hh = lg.hoogte;
+    if (!hoogte || !onderk || x < lg.x0 || x >= lg.x1 || z < lg.z0 || z >= lg.z1) return null;
+    const i = Math.floor((z - lg.z0) / hh.cel) * hh.w + Math.floor((x - lg.x0) / hh.cel);
+    if (!hoogte[i] || !onderk[i]) return null;
+    const yt = hoogte[i] - DATA.ynul - 1;
+    const yo = Math.min(Math.floor(onderk[i] - DATA.ynul), yt - 8);
+    return { yt, yo, h: hoogte[i] };
+  }
+  map.on("click", e => {
+    const p = plek(Math.floor(e.latlng.lng), Math.floor(e.latlng.lat));
+    if (!p) return;
+    const rij = ERTS.map(([n, m, a, b]) => {
+      const top = b === null ? p.yt : Math.min(p.yo + b, p.yt);
+      return `<tr><td>${n}</td><td class="y">meest y ${p.yo + m}</td><td class="y">(${p.yt - (p.yo + m)} m diep)</td><td class="y">y ${p.yo + a} t/m ${top}</td></tr>`;
+    }).join("");
+    L_.popup({ maxWidth: 420 }).setLatLng(e.latlng).setContent(
+      `<b>Hier onder de grond</b><table class="ert">${rij}</table>` +
+      `<div class="m">maaiveld y ${p.yt} (${fmt(p.h)} m) · onderkant y ${p.yo} · bedrock y ${p.yo - 128}</div>`).openOn(map);
+  });
   const meet = document.getElementById("meet");
   map.on("mousemove", e => {
     const x = Math.floor(e.latlng.lng), z = Math.floor(e.latlng.lat);
